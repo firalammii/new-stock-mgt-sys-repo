@@ -1,0 +1,19 @@
+spring:
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/stockmanagementdb
+        username: firalammii
+        password: firalammii
+    sql:
+        init:
+            mode: always
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+    #jpa.show-sql : true
+        hibernate:
+            ddl-auto : update
+        properties:
+            hibernate : org.hibernate.dialect.PostgreSQLDialect
+
+    #spring.datasource.url = jdbc:h2:mem:test
+    #spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.H2Dialect
