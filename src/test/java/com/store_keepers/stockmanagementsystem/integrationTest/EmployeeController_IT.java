@@ -27,9 +27,10 @@ public class EmployeeController_IT {
     @Autowired
     private MockMvc mockMvc;
 
+    //will be dis
     @Test
     public void shouldAddEmployeeWithValidInformation() throws Exception {
-        String data =
+        String data = "{\n" +
                 "    \"firstName\": \"sew\",\n" +
                 "    \"lastName\": \"alew\",\n" +
                 "    \"middleName\": \"new\",\n" +
@@ -37,7 +38,8 @@ public class EmployeeController_IT {
                 "    \"employmentDate\": \"2015-08-09\",\n" +
                 "    \"position\": \"security\",\n" +
                 "    \"email\": \"sth@sth.com\",\n" +
-                "    \"phoneNumber\": \"09445667717\"";
+                "    \"phoneNumber\": \"09445667717\"\n" +
+                "}";
         mockMvc.perform(
                         post(ENDPOINT)
                                 .contentType(MediaType.APPLICATION_JSON)
@@ -45,10 +47,7 @@ public class EmployeeController_IT {
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-             //   .andExpect(content().json("{\"id\":3,\"firstName\":\"Jane2\",\"middleName\":\"G.2\"," +
-           //             "\"lastName\":\"Doe2\",\"email\":\"janedoe2@gmail.com\",\"phoneNumber\":\"+1898882822\"," +
-           //             "\"dateOfBirth\":\"2000-01-01\",\"pin\":233222,\"isVerified\":true,\"balance\":0.0}"))
+                .andExpect(content().json("{\"id\":1,\"firstName\":\"sew\",\"lastName\":\"alew\",\"middleName\":\"new\",\"birthDate\":\"1990-02-03\",\"employmentDate\":\"2015-08-09\",\"position\":\"security\",\"email\":\"sth@sth.com\",\"phoneNumber\":\"09445667717\",\"remark\":\"Active/Member\",\"hasAccessToDB\":false}"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
-
 }
