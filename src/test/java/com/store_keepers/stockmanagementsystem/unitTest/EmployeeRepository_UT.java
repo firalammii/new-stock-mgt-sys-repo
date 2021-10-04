@@ -27,7 +27,6 @@ public class EmployeeRepository_UT {
                 .willReturn(3L);
     }
 
-
     @Test
     public void shouldReturnTheCount(){
         Long count = employeeRepository.count();

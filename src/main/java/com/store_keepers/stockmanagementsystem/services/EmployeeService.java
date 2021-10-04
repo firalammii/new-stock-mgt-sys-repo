@@ -5,6 +5,8 @@ import com.store_keepers.stockmanagementsystem.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotBlank;
+
 @Service
 public class EmployeeService {
 
@@ -14,13 +16,16 @@ public class EmployeeService {
     public Employee addEmployee(Employee employee){
 
         //validation for unique phone number, not to increase the id automatically
-        String exists;
-        for(Long i=1L; i<= employeeRepository.count(); i++){
-            exists= findEmployee(i).getPhoneNumber();
-            if(exists.equals(employee.getPhoneNumber())){
-                return null;
-            }
-        }
+//        Employee employeeExists;
+//        String phoneNumExists;
+//        for(Long id=1L; id <= employeeRepository.count(); id++){
+//            employeeExists = findEmployee(id);
+//            //exists= findEmployee(id).getPhoneNumber();
+//            //phoneNumExists = employeeExists.getPhoneNumber();
+//            if(employeeExists.getPhoneNumber().equals(employee.getPhoneNumber())){
+//                return null;
+//            }
+//        }
         return employeeRepository.save(employee);
 
     }
@@ -30,7 +35,11 @@ public class EmployeeService {
     }
 
     public Employee findEmployee(Long Id) {
-        return employeeRepository.findById(Id).get();
+        boolean isPresent =  employeeRepository.findById(Id).isPresent();
+        if(isPresent){
+            return employeeRepository.findById(Id).get();
+        }
+        return null;
     }
 
 }

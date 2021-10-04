@@ -21,7 +21,6 @@ public class EmployeeRepository_IT {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-
     @Test
     public void shouldReturnValidEmployeeDetails(){
 
