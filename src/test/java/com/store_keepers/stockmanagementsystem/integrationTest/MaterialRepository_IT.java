@@ -23,6 +23,7 @@ public class MaterialRepository_IT {
     @Autowired
     private MaterialRepository materialRepository;
 
+
     @Test
     public void shouldCreateMaterialWithValidDetails(){
         //Given

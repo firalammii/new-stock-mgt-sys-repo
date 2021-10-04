@@ -5,7 +5,6 @@ import com.store_keepers.stockmanagementsystem.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 public class EmployeeController {
     @Autowired
