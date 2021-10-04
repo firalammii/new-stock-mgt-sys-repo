@@ -1,8 +1,6 @@
 package com.store_keepers.stockmanagementsystem.integrationTest;
 
-import com.store_keepers.stockmanagementsystem.domains.Employee;
 import com.store_keepers.stockmanagementsystem.domains.Materials;
-import com.store_keepers.stockmanagementsystem.repositories.EmployeeRepository;
 import com.store_keepers.stockmanagementsystem.repositories.MaterialRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
