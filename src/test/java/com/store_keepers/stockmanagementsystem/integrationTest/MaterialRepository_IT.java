@@ -1,7 +1,7 @@
 package com.store_keepers.stockmanagementsystem.integrationTest;
 
-import com.store_keepers.stockmanagementsystem.domains.Materials;
-import com.store_keepers.stockmanagementsystem.repositories.MaterialRepository;
+import com.store_keepers.stockmanagementsystem.domains.Material;
+import com.store_keepers.stockmanagementsystem.services.MaterialService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,33 +19,30 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class MaterialRepository_IT {
 
     @Autowired
-    private MaterialRepository materialRepository;
+    private MaterialService materialService;
 
     @Test
     public void shouldCreateMaterialWithValidDetails(){
         //Given
-        Materials materials = Materials.builder()
+        Material material = Material.builder()
                 .category("Drug")
                 .cost(45.99)
-                .dateBought(LocalDate.of(2019,9,12))
-                .dateSold(LocalDate.of(2021,9,20))
-                .expiryDate(LocalDate.of(2022,6,6))
-                .name("Paracetamol")
-                .No_inStore(45)
-                .price(50.00)
+                .itemName("Paracetamol")
+                .noOfItem(45)
+                .minSellingPrice(50.00)
                 .productCompany("EPHARM")
                 .productCountry("Ethiopia")
                 .purchaser(2L)
-                .soldBy(1L)
                 .standard("ISO 9000/12")
-
+                .itemTagNum("342/19")
+                .dateBought(LocalDate.now())
                 .build();
         
         //When
-        Materials materials1 = materialRepository.save(materials);
+        Material material1 = materialService.addMaterial(material);
 
         //Then
 
-        assertThat(materials1.getProductCompany().equals(materials.getProductCompany()));
+        assertThat(material1.getProductCompany().equals(material.getProductCompany()));
     }
 }

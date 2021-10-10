@@ -2,10 +2,10 @@ package com.store_keepers.stockmanagementsystem.services;
 
 import com.store_keepers.stockmanagementsystem.domains.Employee;
 import com.store_keepers.stockmanagementsystem.repositories.EmployeeRepository;
+import com.store_keepers.stockmanagementsystem.validations.AgeValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotBlank;
 
 @Service
 public class EmployeeService {
@@ -15,17 +15,23 @@ public class EmployeeService {
 
     public Employee addEmployee(Employee employee){
 
-        //validation for unique phone number, not to increase the id automatically
-//        Employee employeeExists;
-//        String phoneNumExists;
-//        for(Long id=1L; id <= employeeRepository.count(); id++){
-//            employeeExists = findEmployee(id);
-//            //exists= findEmployee(id).getPhoneNumber();
-//            //phoneNumExists = employeeExists.getPhoneNumber();
-//            if(employeeExists.getPhoneNumber().equals(employee.getPhoneNumber())){
-//                return null;
-//            }
-//        }
+        //Age validation
+        int age = AgeValidation.calculateAge(employee.getBirthDate());
+        if(age > 40 || age < 18){
+            return null;
+        }
+       // validation for unique phone number, not to increase the id automatically
+        Employee employeeExists;
+        String phoneNumExists;
+        for(Long id=1L; id <= employeeRepository.count(); id++){
+            employeeExists = findEmployee(id);
+            //exists= findEmployee(id).getPhoneNumber();
+            //phoneNumExists = employeeExists.getPhoneNumber();
+            if(employeeExists.getPhoneNumber().equals(employee.getPhoneNumber())){
+                return null;
+            }
+        }
+
         return employeeRepository.save(employee);
 
     }

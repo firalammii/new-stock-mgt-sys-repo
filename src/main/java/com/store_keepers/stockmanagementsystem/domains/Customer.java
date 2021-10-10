@@ -4,18 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.*;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
-
 
 @Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Employee {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,23 +33,17 @@ public class Employee {
     private String lastName;
 
     @Column(nullable = false)
-    private LocalDate birthDate;
-
-    @Column(nullable = false)
     @NotBlank(message="field is required")
     private String email;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     @NotBlank(message="field is required")
     private String phoneNumber;
 
     @Column(nullable = false)
-    private LocalDate employmentDate = LocalDate.now();
-
-    @Column(nullable = false)
     @NotBlank(message="field is required")
-    private String position;
+    private String itemsPurchased; //since it can be many it is separated by comma
 
-    private String role = "Member"; // to know who has access to the db
+    private LocalDate datePurchased = LocalDate.now();
 
 }

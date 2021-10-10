@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Entity
 @Data
 
-public class Materials {
+public class Material {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -30,26 +30,22 @@ public class Materials {
     @NotBlank(message="field is required")
     private String productCountry;
 
+    @Column(nullable = false)
+    @NotBlank(message="field is required")
     private String productCompany;
-
-    private String standard;
-
-    @Column(nullable = false)
-    private LocalDate dateSold;
-
-    @Column(nullable = false)
-    private LocalDate expiryDate;
-
-    @Column(nullable = false)
-    private LocalDate dateBought;
 
     @Column(nullable = false)
     @NotBlank(message="field is required")
-    private String name;
+    private String itemName;
+
+    private LocalDate dateBought=LocalDate.now();
+
+    @Column(nullable = false)
+    private String itemTagNum;
 
     @Column(nullable = false)
     @NotNull(message="field is required")
-    private int No_inStore;
+    private int noOfItem;
 
     @Column(nullable = false)
     @NotNull(message="field is required")
@@ -57,13 +53,11 @@ public class Materials {
 
     @Column(nullable = false)
     @NotNull(message="field is required")
-    private double price;
-
-    @Column(nullable = false)
-    @NotNull(message="field is required")
-    private Long soldBy;
+    private double minSellingPrice;
 
     @Column(nullable = false)
     @NotNull(message="field is required")
     private Long purchaser;
+
+    private String standard;
 }
