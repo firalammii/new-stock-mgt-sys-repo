@@ -29,13 +29,11 @@ public class EmployeeRepository_IT {
                 .firstName("Alemayew")
                 .middleName("Bogale")
                 .lastName("Ayenachew")
-                .birthDate(LocalDate.of(1990,8,30))
                 .employmentDate(LocalDate.of(2020,9,29))
                 .phoneNumber("0987654332")
                 .email("kungfu@go.com")
                 .position("cleaner")
                 .build();
-
 
         //when
 

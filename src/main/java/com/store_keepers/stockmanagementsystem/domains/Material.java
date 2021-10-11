@@ -23,19 +23,15 @@ public class Material {
     private Long id;
 
     @Column(nullable = false)
-    @NotBlank(message="field is required")
     private String category;
 
     @Column(nullable = false)
-    @NotBlank(message="field is required")
     private String productCountry;
 
     @Column(nullable = false)
-    @NotBlank(message="field is required")
     private String productCompany;
 
     @Column(nullable = false)
-    @NotBlank(message="field is required")
     private String itemName;
 
     private LocalDate dateBought=LocalDate.now();
@@ -48,15 +44,12 @@ public class Material {
     private int noOfItem;
 
     @Column(nullable = false)
-    @NotNull(message="field is required")
     private double cost;
 
     @Column(nullable = false)
-    @NotNull(message="field is required")
     private double minSellingPrice;
 
     @Column(nullable = false)
-    @NotNull(message="field is required")
     private Long purchaser;
 
     private String standard;

@@ -1,5 +1,6 @@
 package com.store_keepers.stockmanagementsystem.domains;
 
+import com.store_keepers.stockmanagementsystem.validations.AgeValidation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,35 +23,23 @@ public class Employee {
     private Long id;
 
     @Column(nullable = false)
-    @NotBlank(message="field is required")
     private String firstName;
 
     @Column(nullable = false)
-    @NotBlank(message="field is required")
     private String middleName;
 
     @Column(nullable = false)
-    @NotBlank(message="field is required")
     private String lastName;
 
-    @Column(nullable = false)
-    private LocalDate birthDate;
-
-    @Column(nullable = false)
-    @NotBlank(message="field is required")
     private String email;
 
     @Column(nullable = false, unique = true)
-    @NotBlank(message="field is required")
     private String phoneNumber;
 
     @Column(nullable = false)
-    private LocalDate employmentDate = LocalDate.now();
-
-    @Column(nullable = false)
-    @NotBlank(message="field is required")
     private String position;
 
+    private LocalDate employmentDate = LocalDate.now();
     private String role = "Member"; // to know who has access to the db
 
 }

@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
-public class Admin {
+public class AuthorizedEmployee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +27,9 @@ public class Admin {
 
     private String phoneNumber;
 
+    private String role;
+
     @Column(nullable = false)
-    @NotBlank(message="field is required")
     private String password;
 
     @Column(nullable = false)

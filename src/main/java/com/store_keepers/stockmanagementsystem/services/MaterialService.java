@@ -32,6 +32,10 @@ public class MaterialService {
         if(materialRepository.existsById(id)){
             return materialRepository.findById(id).get();
         }
+//        boolean isPresent =  materialRepository.findById(id).isPresent();
+//        if(isPresent){
+//            return materialRepository.findById(id).get();
+//        }
         return null;
     }
 

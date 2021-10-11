@@ -28,11 +28,9 @@ public class CustomerRepository_IT {
         Customer customer = Customer.builder()
                 .firstName("Lakech")
                 .middleName("Abera")
-                .lastName("Alemu")
-                .email("lakabal@gmail.com")
                 .phoneNumber("0923211223")
-                .itemsPurchased("1223/20, 1234/21")
-                .datePurchased(LocalDate.now())
+                .itemName("1223/20")
+                .date(LocalDate.now())
                 .build();
 
 
@@ -40,7 +38,7 @@ public class CustomerRepository_IT {
         Customer customer1 = customerService.createCustomer(customer);
 
         //then
-        assertEquals(customer.getLastName(), customer1.getLastName());
+        assertEquals(customer.getFirstName(), customer1.getFirstName());
         assertThat(customer.getId().equals(customer1.getId()));
     }
 }

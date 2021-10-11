@@ -2,10 +2,8 @@ package com.store_keepers.stockmanagementsystem.domains;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -15,10 +13,24 @@ public class Sales {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long materialId;
-    private Long sellingRequestId;
-    private Long sellerId;
+    //material properties
+    private String itemName;
+    private String itemCategory;
+    private int noOfItem;
+
+    //Seller property
+    private String sellerFullName;
+
+    //customer properties
+    private String customerPhoneNumber;
+
+    private String customerFullName;
+
+    //additional details
+    @Column(nullable = false)
     private Long customerId;
 
+    private Double price;
+    private LocalDate dateSold = LocalDate.now();
 
 }

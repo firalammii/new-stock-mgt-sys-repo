@@ -21,29 +21,28 @@ public class Customer {
     private Long id;
 
     @Column(nullable = false)
-    @NotBlank(message="field is required")
     private String firstName;
 
     @Column(nullable = false)
-    @NotBlank(message="field is required")
     private String middleName;
 
     @Column(nullable = false)
-    @NotBlank(message="field is required")
-    private String lastName;
-
-    @Column(nullable = false)
-    @NotBlank(message="field is required")
-    private String email;
-
-    @Column(nullable = false)
-    @NotBlank(message="field is required")
     private String phoneNumber;
 
     @Column(nullable = false)
-    @NotBlank(message="field is required")
-    private String itemsPurchased; //since it can be many it is separated by comma
+    private int noOfItem;
 
-    private LocalDate datePurchased = LocalDate.now();
+    @Column(nullable = false)
+    private Long itemId;
+
+    @Column(nullable = false)
+    private Long sellerId;
+
+    @Column(nullable = false)
+    private Double price;
+
+    private String itemName;
+    private LocalDate date = LocalDate.now();
+    private int noOfVisit=0;
 
 }

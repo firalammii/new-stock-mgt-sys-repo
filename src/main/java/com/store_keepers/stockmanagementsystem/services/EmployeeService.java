@@ -15,11 +15,6 @@ public class EmployeeService {
 
     public Employee addEmployee(Employee employee){
 
-        //Age validation
-        int age = AgeValidation.calculateAge(employee.getBirthDate());
-        if(age > 40 || age < 18){
-            return null;
-        }
        // validation for unique phone number, not to increase the id automatically
         Employee employeeExists;
         String phoneNumExists;
@@ -36,9 +31,12 @@ public class EmployeeService {
 
     }
 
+
     public Iterable<Employee> allEmployees() {
         return employeeRepository.findAll();
     }
+
+
 
     public Employee findEmployee(Long Id) {
         boolean isPresent =  employeeRepository.findById(Id).isPresent();

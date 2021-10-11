@@ -23,6 +23,6 @@ public class CustomerController {
 
     @GetMapping("/customer/list/{phoneNumber}")
     public Customer listCustomerByPhoneNumber(@PathVariable String phoneNumber){
-        return customerService.listCustomerByPhoneNumber(phoneNumber);
+        return customerService.findCustomerByPhoneNumber(phoneNumber);
     }
 }
