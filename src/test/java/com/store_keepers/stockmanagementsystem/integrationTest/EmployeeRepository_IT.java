@@ -29,10 +29,10 @@ public class EmployeeRepository_IT {
                 .firstName("Alemayew")
                 .middleName("Bogale")
                 .lastName("Ayenachew")
-                .employmentDate(LocalDate.of(2020,9,29))
                 .phoneNumber("0987654332")
                 .email("kungfu@go.com")
                 .position("cleaner")
+                .role("admin")
                 .build();
 
         //when

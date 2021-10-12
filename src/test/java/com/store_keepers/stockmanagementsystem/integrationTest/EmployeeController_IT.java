@@ -53,24 +53,4 @@ public class EmployeeController_IT {
                 //.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
-    @Test
-    public void shouldFailToRegisterEmployeeDueToAge() throws Exception{
-        String data = "{\n" +
-                "    \"firstName\": \"sew\",\n" +
-                "    \"lastName\": \"alew\",\n" +
-                "    \"middleName\": \"new\",\n" +
-                "    \"birthDate\": \"1980-02-03\",\n" +
-                "    \"employmentDate\": \"2015-08-09\",\n" +
-                "    \"position\": \"security\",\n" +
-                "    \"email\": \"sth@sth.com\",\n" +
-                "    \"phoneNumber\": \"09445667717\"\n" +
-                "}";
-        mockMvc.perform(
-                        post(ENDPOINT)
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(data)
-                )
-                .andDo(print())
-                .andExpect(status().isOk());
-    }
 }
