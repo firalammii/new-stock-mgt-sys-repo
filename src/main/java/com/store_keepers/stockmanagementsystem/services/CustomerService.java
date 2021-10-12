@@ -15,9 +15,15 @@ public class CustomerService {
     @Autowired
     private MaterialService materialService;
 
+    @Autowired
+    private AuthorizedEmployeeService authorizedEmployeeService;
+
     public Customer createCustomer(Customer customer) {
         Material material = materialService.findMaterialById(customer.getItemId());
         customer.setItemName(material.getItemName());
+
+        //call from here
+        customer.setSellerId(authorizedEmployeeService.findWhoLoggedIn());
         return customerRepository.save(customer);
     }
 
@@ -43,6 +49,9 @@ public class CustomerService {
         }
         return null;
     }
+//    public void updateCustomerVisit(){
+//
+//    }
 
 
 }

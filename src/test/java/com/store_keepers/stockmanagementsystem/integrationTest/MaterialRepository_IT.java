@@ -34,10 +34,9 @@ public class MaterialRepository_IT {
                 .productCountry("Ethiopia")
                 .purchaser(2L)
                 .standard("ISO 9000/12")
-                .itemTagNum("342/19")
                 .dateBought(LocalDate.now())
                 .build();
-        
+
         //When
         Material material1 = materialService.addMaterial(material);
 

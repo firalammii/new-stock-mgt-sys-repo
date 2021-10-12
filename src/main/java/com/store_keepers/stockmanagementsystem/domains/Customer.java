@@ -36,11 +36,9 @@ public class Customer {
     private Long itemId;
 
     @Column(nullable = false)
-    private Long sellerId;
-
-    @Column(nullable = false)
     private Double price;
 
+    private Long sellerId;
     private String itemName;
     private LocalDate date = LocalDate.now();
     private int noOfVisit=0;

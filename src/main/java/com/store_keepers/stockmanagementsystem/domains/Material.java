@@ -37,9 +37,6 @@ public class Material {
     private LocalDate dateBought=LocalDate.now();
 
     @Column(nullable = false)
-    private String itemTagNum;
-
-    @Column(nullable = false)
     @NotNull(message="field is required")
     private int noOfItem;
 

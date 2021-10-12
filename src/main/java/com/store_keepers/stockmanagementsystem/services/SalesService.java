@@ -23,6 +23,9 @@ public class SalesService {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    private AuthorizedEmployeeService authorizedEmployeeService;
+
     public Sales addSales(Sales sales){
         return salesRepository.save(buildSales(sales));
     }
@@ -35,6 +38,7 @@ public class SalesService {
         Customer customer;
 
         customer = customerService.findCustomerById(sales.getCustomerId());
+        //customer.setSellerId(authorizedEmployeeService.findWhoLoggedIn());
         theSales.setCustomerFullName(customer.getFirstName()+" "+customer.getMiddleName());
         theSales.setCustomerPhoneNumber(customer.getPhoneNumber());
         theSales.setNoOfItem(customer.getNoOfItem());

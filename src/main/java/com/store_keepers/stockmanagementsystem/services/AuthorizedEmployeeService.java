@@ -7,6 +7,8 @@ import com.store_keepers.stockmanagementsystem.validations.RoleValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Locale;
+
 @Service
 public class AuthorizedEmployeeService {
 
@@ -16,12 +18,15 @@ public class AuthorizedEmployeeService {
     @Autowired
     private EmployeeService employeeService ;
 
+    private  Long sellerId;
+
     public AuthorizedEmployee createAuthorizedEmployee(AuthorizedEmployee authorizedEmployee){
         //validation because admin has to be member of company employee
         Employee employee = employeeService.findEmployee(authorizedEmployee.getCompanyId());
         if(employee == null){
             return null;
         }
+
         //Admin has to be assigned "Admin" in employee table in role column
         int checkRole = RoleValidation.checkRole(employee.getRole());
         if( !(checkRole == 1 || checkRole == 2 || checkRole == 3)){
@@ -38,17 +43,22 @@ public class AuthorizedEmployeeService {
         }
 
         //if all good then admin building and saving
+        sellerId = employee.getId();
         AuthorizedEmployee theAuthorizedEmployee = buildAuthorizedEmployee(employee, authorizedEmployee);
         return authorizedEmployeeRepository.save(theAuthorizedEmployee);
     }
 
     public AuthorizedEmployee findAuthorizedEmployeeByCompanyId(Long companyId) {
         AuthorizedEmployee existingAuthorizedEmployee;
+        boolean exists;
         for(Long id = 1L; id <= authorizedEmployeeRepository.count(); id++){
-            existingAuthorizedEmployee = authorizedEmployeeRepository.findById(id).get();
-            if(existingAuthorizedEmployee.getCompanyId().equals(companyId)){
-                return existingAuthorizedEmployee;
-            }
+             exists = authorizedEmployeeRepository.existsById(id);
+             if(exists){
+                 existingAuthorizedEmployee = authorizedEmployeeRepository.findById(id).get();
+                 if(companyId.equals(existingAuthorizedEmployee.getCompanyId())){
+                     return existingAuthorizedEmployee;
+                 }
+             }
         }
         return null;
     }
@@ -74,15 +84,25 @@ public class AuthorizedEmployeeService {
     }
 
     public String authenticator(Long companyId, String password){
+        String error;
+        String res;
         AuthorizedEmployee authorizedEmployee = findAuthorizedEmployeeByCompanyId(companyId);
-        if(authorizedEmployee.equals(null)){
-            return null;
+        if(authorizedEmployee == null){
+            error = "authorization";
+            return error;
         }
         if(!(password.equals(authorizedEmployee.getPassword()))){
-            return null;
+            error = "password";
+            return password;
         }
 
-        return authorizedEmployee.getRole();
+        error = authorizedEmployee.getRole();
+        res = error.toLowerCase();
+
+        return res;
     }
 
+    public Long findWhoLoggedIn(){
+        return sellerId;
+    }
 }
