@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+
 import java.time.LocalDate;
 
 @Entity
@@ -30,17 +30,13 @@ public class Customer {
     private String phoneNumber;
 
     @Column(nullable = false)
-    private int noOfItem;
-
-    @Column(nullable = false)
     private Long itemId;
 
-    @Column(nullable = false)
-    private Double price;
-
-    private Long sellerId;
     private String itemName;
+    private int quantity;
+    private double price;
+    private int noOfVisit = 0;
     private LocalDate date = LocalDate.now();
-    private int noOfVisit=0;
+
 
 }

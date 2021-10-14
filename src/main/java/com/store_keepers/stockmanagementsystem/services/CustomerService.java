@@ -19,11 +19,14 @@ public class CustomerService {
     private AuthorizedEmployeeService authorizedEmployeeService;
 
     public Customer createCustomer(Customer customer) {
+        if(customerRepository.count() != 0){
+            Customer customer1 = findCustomerByPhoneNumber(customer.getPhoneNumber());
+            if(customer1 != null){
+                return customer1;
+            }
+        }
         Material material = materialService.findMaterialById(customer.getItemId());
         customer.setItemName(material.getItemName());
-
-        //call from here
-        customer.setSellerId(authorizedEmployeeService.findWhoLoggedIn());
         return customerRepository.save(customer);
     }
 
@@ -34,11 +37,13 @@ public class CustomerService {
     public Customer findCustomerByPhoneNumber(String phoneNumber) {
         Customer customer;
         for(Long id=1L; id <= customerRepository.count(); id++){
-            customer = customerRepository.findById(id).get();
-            if(customer.getPhoneNumber().equals(phoneNumber)){
-                return customer;
-            }
+            customer = findCustomerById(id);
 
+            if(customer != null){
+                if(phoneNumber.equals(customer.getPhoneNumber())){
+                    return customer;
+                }
+            }
         }
         return null;
     }
@@ -49,9 +54,5 @@ public class CustomerService {
         }
         return null;
     }
-//    public void updateCustomerVisit(){
-//
-//    }
-
 
 }

@@ -4,6 +4,8 @@ import com.store_keepers.stockmanagementsystem.domains.Customer;
 import com.store_keepers.stockmanagementsystem.domains.Employee;
 import com.store_keepers.stockmanagementsystem.domains.Material;
 import com.store_keepers.stockmanagementsystem.domains.Sales;
+import com.store_keepers.stockmanagementsystem.repositories.CustomerRepository;
+import com.store_keepers.stockmanagementsystem.repositories.MaterialRepository;
 import com.store_keepers.stockmanagementsystem.repositories.SalesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,39 +28,43 @@ public class SalesService {
     @Autowired
     private AuthorizedEmployeeService authorizedEmployeeService;
 
+    @Autowired
+    private MaterialRepository materialRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+
     public Sales addSales(Sales sales){
-        return salesRepository.save(buildSales(sales));
-    }
 
-
-    public Sales buildSales(Sales sales){
-        Sales theSales=sales;
-        Material material;
         Employee employee;
         Customer customer;
+        Material material;
+
+        Long sellerId = authorizedEmployeeService.findWhoLoggedIn();
+        employee = employeeService.findEmployee(sellerId);
+        sales.setSellerFullName(employee.getFirstName()+" "+employee.getMiddleName());
 
         customer = customerService.findCustomerById(sales.getCustomerId());
-        //customer.setSellerId(authorizedEmployeeService.findWhoLoggedIn());
-        theSales.setCustomerFullName(customer.getFirstName()+" "+customer.getMiddleName());
-        theSales.setCustomerPhoneNumber(customer.getPhoneNumber());
-        theSales.setNoOfItem(customer.getNoOfItem());
-        theSales.setPrice(customer.getPrice());
+        sales.setCustomerFullName(customer.getFirstName()+" "+customer.getMiddleName());
+        sales.setCustomerPhoneNumber(customer.getPhoneNumber());
 
-        employee = employeeService.findEmployee(customer.getSellerId());
-        theSales.setSellerFullName(employee.getFirstName()+" "+employee.getMiddleName());
-
-        material = materialService.findMaterialById(customer.getItemId());
-        theSales.setItemCategory(material.getCategory());
-        theSales.setItemName(material.getItemName());
+        material = materialService.findMaterialById(sales.getItemId());
+        sales.setItemCategory(material.getCategory());
+        sales.setItemName(material.getItemName());
 
         //updating the noOfItems in Material database
-        int newNoOfItem = material.getNoOfItem()-sales.getNoOfItem();
+        int newNoOfItem = material.getNoOfItem()-sales.getQuantity();
         material.setNoOfItem(newNoOfItem);
+        materialRepository.save(material);
 
         //updating noOfVisit for customer
         customer.setNoOfVisit(customer.getNoOfVisit()+1);
+        customer.setQuantity(sales.getQuantity());
+        customer.setPrice(sales.getPrice());
+        customerRepository.save(customer);
 
-        return theSales;
+        return salesRepository.save(sales);
     }
 
     public Iterable<Sales> listSales(){

@@ -7,7 +7,6 @@ import com.store_keepers.stockmanagementsystem.validations.RoleValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Locale;
 
 @Service
 public class AuthorizedEmployeeService {
@@ -19,10 +18,11 @@ public class AuthorizedEmployeeService {
     private EmployeeService employeeService ;
 
     private  Long sellerId;
+    private Employee employee;
 
     public AuthorizedEmployee createAuthorizedEmployee(AuthorizedEmployee authorizedEmployee){
         //validation because admin has to be member of company employee
-        Employee employee = employeeService.findEmployee(authorizedEmployee.getCompanyId());
+        employee = employeeService.findEmployee(authorizedEmployee.getCompanyId());
         if(employee == null){
             return null;
         }
@@ -43,7 +43,7 @@ public class AuthorizedEmployeeService {
         }
 
         //if all good then admin building and saving
-        sellerId = employee.getId();
+
         AuthorizedEmployee theAuthorizedEmployee = buildAuthorizedEmployee(employee, authorizedEmployee);
         return authorizedEmployeeRepository.save(theAuthorizedEmployee);
     }
@@ -98,6 +98,8 @@ public class AuthorizedEmployeeService {
 
         error = authorizedEmployee.getRole();
         res = error.toLowerCase();
+
+        sellerId = companyId;
 
         return res;
     }

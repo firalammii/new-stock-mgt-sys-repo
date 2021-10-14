@@ -16,7 +16,9 @@ public class Sales {
     //material properties
     private String itemName;
     private String itemCategory;
-    private int noOfItem;
+
+    @Column(nullable = false)
+    private int quantity;
 
     //Seller property
     private String sellerFullName;
@@ -30,7 +32,12 @@ public class Sales {
     @Column(nullable = false)
     private Long customerId;
 
+    @Column(nullable = false)
+    private Long itemId;
+
+    @Column(nullable = false)
     private Double price;
-    private LocalDate dateSold = LocalDate.now();
+
+    private LocalDate date = LocalDate.now();
 
 }
