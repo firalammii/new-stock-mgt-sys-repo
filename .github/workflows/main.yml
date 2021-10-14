@@ -28,6 +28,6 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "stock-management-system-by-store-keepers-group"
+          heroku_app_name: "stock-mgt-sys-store-keepers"
           heroku_email: firalammii@gmail.com
           healthcheck: "https://stock-management-system-by-store-keepers-group.heroku.app/actuator/health"
