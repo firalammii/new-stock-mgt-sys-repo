@@ -1,15 +1,11 @@
 package com.store_keepers.stockmanagementsystem.domains;
 
-import com.store_keepers.stockmanagementsystem.validations.AgeValidation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
-
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
-
 
 @Entity
 @Data

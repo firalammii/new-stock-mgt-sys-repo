@@ -65,9 +65,11 @@ public class SalesService {
         customerRepository.save(customer);
 
         return salesRepository.save(sales);
+
     }
 
     public Iterable<Sales> listSales(){
+
         return salesRepository.findAll();
     }
 }

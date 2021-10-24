@@ -21,6 +21,7 @@ public class StockManagementSystemApplication {
                 registry.addMapping("/**")
                         .allowedOrigins("*");
 
+
                 //.allowedOrigins("http://localhost:3000", "https://....heroku.com")
             }
         };

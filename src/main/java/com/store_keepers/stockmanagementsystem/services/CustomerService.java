@@ -15,10 +15,8 @@ public class CustomerService {
     @Autowired
     private MaterialService materialService;
 
-    @Autowired
-    private AuthorizedEmployeeService authorizedEmployeeService;
-
     public Customer createCustomer(Customer customer) {
+
         if(customerRepository.count() != 0){
             Customer customer1 = findCustomerByPhoneNumber(customer.getPhoneNumber());
             if(customer1 != null){
@@ -27,7 +25,9 @@ public class CustomerService {
         }
         Material material = materialService.findMaterialById(customer.getItemId());
         customer.setItemName(material.getItemName());
+
         return customerRepository.save(customer);
+
     }
 
     public Iterable<Customer> listCustomer() {
@@ -35,7 +35,9 @@ public class CustomerService {
     }
 
     public Customer findCustomerByPhoneNumber(String phoneNumber) {
+
         Customer customer;
+
         for(Long id=1L; id <= customerRepository.count(); id++){
             customer = findCustomerById(id);
 
@@ -45,10 +47,14 @@ public class CustomerService {
                 }
             }
         }
+
         return null;
+
     }
     public Customer findCustomerById(Long id){
+
         boolean isPresent =  customerRepository.findById(id).isPresent();
+
         if(isPresent){
             return customerRepository.findById(id).get();
         }

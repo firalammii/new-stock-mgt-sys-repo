@@ -43,5 +43,6 @@ public class MaterialRepository_IT {
         //Then
 
         assertThat(material1.getProductCompany().equals(material.getProductCompany()));
+
     }
 }

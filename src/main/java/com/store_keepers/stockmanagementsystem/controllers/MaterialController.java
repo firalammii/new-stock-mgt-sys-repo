@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MaterialController {
+
     @Autowired
     private MaterialService materialService;
 
@@ -22,7 +23,7 @@ public class MaterialController {
 
     @GetMapping("/material/list/{id}")
     public Material findMaterialById(@PathVariable Long id){
-        //Long itemId = Long.valueOf(id);
+
         return materialService.findMaterialById(id);
     }
 

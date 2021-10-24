@@ -14,7 +14,10 @@ public class SalesController {
     @PostMapping("/sales/add")
     public String addSales(@RequestBody Sales sales){
         Sales sales1 = salesService.addSales(sales);
-        return sales1.getItemName()+" is sold to "+sales1.getCustomerFullName()+" at price: "+sales1.getPrice()+" by "+ sales1.getSellerFullName();
+
+        return sales1.getItemName()+" is sold to "+
+                sales1.getCustomerFullName()+" at price: "+
+                sales1.getPrice()+" by "+ sales1.getSellerFullName();
     }
 
     @GetMapping("/sales/list")

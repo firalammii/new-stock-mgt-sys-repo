@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Builder
@@ -34,10 +32,7 @@ public class Material {
     @Column(nullable = false)
     private String itemName;
 
-    private LocalDate dateBought=LocalDate.now();
-
     @Column(nullable = false)
-    @NotNull(message="field is required")
     private int noOfItem;
 
     @Column(nullable = false)
@@ -50,4 +45,5 @@ public class Material {
     private Long purchaser;
 
     private String standard;
+    private LocalDate dateBought=LocalDate.now();
 }

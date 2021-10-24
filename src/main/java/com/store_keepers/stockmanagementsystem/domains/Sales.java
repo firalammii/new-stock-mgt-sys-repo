@@ -40,4 +40,5 @@ public class Sales {
 
     private LocalDate date = LocalDate.now();
 
+
 }

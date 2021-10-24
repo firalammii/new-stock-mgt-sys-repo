@@ -14,6 +14,7 @@ public class MaterialService {
     private MaterialRepository materialRepository;
 
     public Material addMaterial(Material store) {
+
         for(Long i=1L; i <= materialRepository.count(); i++){
             if(materialRepository.findById(i).equals(store)){
                 return null;
@@ -44,14 +45,12 @@ public class MaterialService {
             material = findMaterialById(id);
             if(material.getNoOfItem() <= minimumStockBalance){
 
-                return "minimum stock balance is reached for Material: " + material.getItemName();
+                return "minimum stock balance is reached for Material: " +
+                        material.getItemName();
             }
         }
         return null;
     }
 
-//    public void updateQuantity(){
-//
-//    }
 
 }

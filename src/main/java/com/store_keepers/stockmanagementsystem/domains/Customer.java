@@ -38,5 +38,4 @@ public class Customer {
     private int noOfVisit = 0;
     private LocalDate date = LocalDate.now();
 
-
 }

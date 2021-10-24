@@ -41,5 +41,6 @@ public class EmployeeRepository_IT {
 
         //then
         assertThat(employee1.getPhoneNumber().equals(employee.getPhoneNumber()));
+
     }
 }

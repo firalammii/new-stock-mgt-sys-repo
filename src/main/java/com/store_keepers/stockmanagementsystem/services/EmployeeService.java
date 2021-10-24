@@ -17,11 +17,10 @@ public class EmployeeService {
 
        // validation for unique phone number, not to increase the id automatically
         Employee employeeExists;
-        String phoneNumExists;
+
         for(Long id=1L; id <= employeeRepository.count(); id++){
             employeeExists = findEmployee(id);
-            //exists= findEmployee(id).getPhoneNumber();
-            //phoneNumExists = employeeExists.getPhoneNumber();
+
             if(employeeExists.getPhoneNumber().equals(employee.getPhoneNumber())){
                 return null;
             }
@@ -35,7 +34,6 @@ public class EmployeeService {
     public Iterable<Employee> allEmployees() {
         return employeeRepository.findAll();
     }
-
 
 
     public Employee findEmployee(Long Id) {

@@ -13,16 +13,19 @@ public class CustomerController {
 
     @PostMapping("/customer/add")
     public Customer addCustomer(@RequestBody Customer customer){
+
         return customerService.createCustomer(customer);
     }
 
     @GetMapping("/customer/list")
     public Iterable<Customer> listCustomer(){
+
         return customerService.listCustomer();
     }
 
     @GetMapping("/customer/list/{phoneNumber}")
     public Customer listCustomerByPhoneNumber(@PathVariable String phoneNumber){
+
         return customerService.findCustomerByPhoneNumber(phoneNumber);
     }
 }

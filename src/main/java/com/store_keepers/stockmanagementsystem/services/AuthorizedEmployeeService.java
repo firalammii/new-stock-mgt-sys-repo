@@ -84,8 +84,10 @@ public class AuthorizedEmployeeService {
     }
 
     public String authenticator(Long companyId, String password){
+
         String error;
         String res;
+
         AuthorizedEmployee authorizedEmployee = findAuthorizedEmployeeByCompanyId(companyId);
         if(authorizedEmployee == null){
             error = "authorization";
@@ -96,10 +98,10 @@ public class AuthorizedEmployeeService {
             return password;
         }
 
-        error = authorizedEmployee.getRole();
-        res = error.toLowerCase();
+        res = authorizedEmployee.getRole();
+        res = res.toLowerCase();
 
-        sellerId = companyId;
+        sellerId = companyId; //trace the seller while login to automatically fill the fields
 
         return res;
     }
