@@ -3,7 +3,7 @@ name: stock-mgt-sys-store-keepers1
 on:
   push:
     branches:
-      - deployable
+      - main
 jobs:
   ci:
     runs-on: ubuntu-latest
