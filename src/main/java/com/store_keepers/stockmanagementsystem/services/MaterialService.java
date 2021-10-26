@@ -5,6 +5,8 @@ import com.store_keepers.stockmanagementsystem.repositories.MaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MaterialService {
 
@@ -36,21 +38,5 @@ public class MaterialService {
 
         return null;
     }
-
-    public String checkMinimumStockBalance(){
-
-        Material material;
-
-        for(Long id = 1L; id <= materialRepository.count(); id++){
-            material = findMaterialById(id);
-            if(material.getNoOfItem() <= minimumStockBalance){
-
-                return "minimum stock balance is reached for Material: " +
-                        material.getItemName();
-            }
-        }
-        return null;
-    }
-
 
 }

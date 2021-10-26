@@ -7,7 +7,6 @@ import com.store_keepers.stockmanagementsystem.validations.RoleValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class AuthorizedEmployeeService {
 
@@ -16,6 +15,9 @@ public class AuthorizedEmployeeService {
 
     @Autowired
     private EmployeeService employeeService ;
+
+    @Autowired
+    private MaterialService materialService;
 
     private  Long sellerId;
     private Employee employee;
@@ -49,6 +51,7 @@ public class AuthorizedEmployeeService {
     }
 
     public AuthorizedEmployee findAuthorizedEmployeeByCompanyId(Long companyId) {
+
         AuthorizedEmployee existingAuthorizedEmployee;
         boolean exists;
         for(Long id = 1L; id <= authorizedEmployeeRepository.count(); id++){
@@ -60,7 +63,9 @@ public class AuthorizedEmployeeService {
                  }
              }
         }
+
         return null;
+
     }
 
     public AuthorizedEmployee buildAuthorizedEmployee(Employee employee, AuthorizedEmployee authorizedEmployee){
@@ -95,8 +100,10 @@ public class AuthorizedEmployeeService {
         }
         if(!(password.equals(authorizedEmployee.getPassword()))){
             error = "password";
-            return password;
+            return error;
         }
+
+// if the execution achieved here it implies the employee authorized to work with the database
 
         res = authorizedEmployee.getRole();
         res = res.toLowerCase();
@@ -109,4 +116,6 @@ public class AuthorizedEmployeeService {
     public Long findWhoLoggedIn(){
         return sellerId;
     }
+
+
 }

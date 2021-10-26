@@ -28,13 +28,4 @@ public class EmployeeController {
         return employeeService.findEmployee(id);
     }
 
-    @GetMapping("/")
-    public String sayHello(){
-        return "Hello from my local intellijIDEA project";
-    }
-
-//    @GetMapping("/about")
-//    public String about(){
-//        return "this is the about page that is aimed to help store management";
-//    }
 }

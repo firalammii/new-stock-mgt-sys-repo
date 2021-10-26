@@ -21,7 +21,10 @@ public class AuthorizedEmployeeController {
     @PostMapping("/authorizedEmployee/login")
     public String authenticator(@RequestBody AuthorizedEmployee authorizedEmployee){
 
-        return authorizedEmployeeService.authenticator(authorizedEmployee.getCompanyId(), authorizedEmployee.getPassword());
+        Long companyId = authorizedEmployee.getCompanyId();
+        String password = authorizedEmployee.getPassword();
+
+        return authorizedEmployeeService.authenticator(companyId, password);
     }
 
     @GetMapping("/authorizedEmployee/list")
