@@ -19,10 +19,7 @@ public class StockManagementSystemApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry){
                 registry.addMapping("/**")
-                        .allowedOrigins("*");
-
-
-                //.allowedOrigins("http://localhost:3000", "https://....heroku.com")
+                    .allowedOrigins("http://localhost:3000", "https://stock-mgt-sys-web.herokuapp.com");
             }
         };
 

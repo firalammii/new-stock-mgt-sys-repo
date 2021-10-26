@@ -15,7 +15,9 @@ public class AuthorizedEmployeeController {
     public String createAuthorizedEmployee(@RequestBody AuthorizedEmployee authorizedEmployee){
 
         AuthorizedEmployee authorizedEmployee1 = authorizedEmployeeService.createAuthorizedEmployee(authorizedEmployee);
-        return authorizedEmployee1.getRole();
+
+        return authorizedEmployee1.getRole() + " " + authorizedEmployee1.getFirstName() +
+                " " + authorizedEmployee1.getMiddleName();
     }
 
     @PostMapping("/authorizedEmployee/login")

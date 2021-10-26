@@ -105,10 +105,12 @@ public class AuthorizedEmployeeService {
 
 // if the execution achieved here it implies the employee authorized to work with the database
 
-        res = authorizedEmployee.getRole();
-        res = res.toLowerCase();
-
         sellerId = companyId; //trace the seller while login to automatically fill the fields
+
+        String role = authorizedEmployee.getRole();
+        role = role.toLowerCase();
+        res = role + " " + authorizedEmployee.getFirstName()+
+                " " + authorizedEmployee.getMiddleName();
 
         return res;
     }
