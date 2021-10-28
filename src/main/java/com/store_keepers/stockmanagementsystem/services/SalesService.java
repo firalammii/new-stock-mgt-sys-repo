@@ -10,6 +10,8 @@ import com.store_keepers.stockmanagementsystem.repositories.SalesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class SalesService {
 
@@ -63,6 +65,7 @@ public class SalesService {
         customer.setItemName(sales.getItemName());
         customer.setQuantity(sales.getQuantity());
         customer.setPrice(sales.getPrice());
+        customer.setDate(LocalDate.now());
 
         customerRepository.save(customer);
 
