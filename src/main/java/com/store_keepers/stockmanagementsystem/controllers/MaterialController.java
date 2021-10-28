@@ -14,8 +14,8 @@ public class MaterialController {
     private MaterialService materialService;
 
     @PostMapping("/material/add")
-    public Material addMaterial(@RequestBody Material store){
-        return materialService.addMaterial(store);
+    public Material addMaterial(@RequestBody Material material){
+        return materialService.addMaterial(material);
     }
 
     @GetMapping("/material/list")

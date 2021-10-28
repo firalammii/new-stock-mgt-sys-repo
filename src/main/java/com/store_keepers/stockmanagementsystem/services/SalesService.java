@@ -60,8 +60,10 @@ public class SalesService {
 
         //updating noOfVisit for customer
         customer.setNoOfVisit(customer.getNoOfVisit()+1);
+        customer.setItemName(sales.getItemName());
         customer.setQuantity(sales.getQuantity());
         customer.setPrice(sales.getPrice());
+
         customerRepository.save(customer);
 
         return salesRepository.save(sales);

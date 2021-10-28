@@ -5,26 +5,20 @@ import com.store_keepers.stockmanagementsystem.repositories.MaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class MaterialService {
-
-    private int minimumStockBalance = 10;
 
     @Autowired
     private MaterialRepository materialRepository;
 
-    public Material addMaterial(Material store) {
+    @Autowired
+    private AuthorizedEmployeeService authorizedEmployeeService;
 
-        for(Long i=1L; i <= materialRepository.count(); i++){
-            if(materialRepository.findById(i).equals(store)){
-                return null;
-            }
-        }
-        //no duplication of materials with the same properties
-        //String purchaser = store.getPurchaser().getFirstName(); for reporting
-        return materialRepository.save(store);
+    public Material addMaterial(Material material) {
+        Long sellerId = authorizedEmployeeService.findWhoLoggedIn();
+        material.setPurchaser(sellerId);
+
+        return materialRepository.save(material);
     }
 
     public Iterable<Material> listMaterials() {
@@ -32,7 +26,8 @@ public class MaterialService {
     }
 
     public Material findMaterialById(Long id) {
-        if(materialRepository.existsById(id)){
+        boolean isPresent =  materialRepository.findById(id).isPresent();
+        if(isPresent){
             return materialRepository.findById(id).get();
         }
 
